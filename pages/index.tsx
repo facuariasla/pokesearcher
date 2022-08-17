@@ -11,19 +11,22 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PokeModal from "../components/PokeModal";
 import { loadPokemons } from "../lib";
 
 const Home: NextPage = ({ allPokemons }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [arrayFragment, setArrayFragment] = useState(allPokemons);
-  const [word, setWord] = useState(true);
+  const [word, setWord] = useState(false);
+
+  const [allPokeFetch, setAllPokeFetch] = useState<any>()
+
 
   const handleSearch = (e: any) => {
     if (e.target.value.length > 0) {
       console.log(e.target.value.toLowerCase());
-      const array = allPokemons.filter((el: any) =>
+      const array = allPokeFetch?.filter((el: any) =>
         el.name.includes(e.target.value.toLowerCase())
       );
       setArrayFragment(array);
@@ -33,6 +36,18 @@ const Home: NextPage = ({ allPokemons }: any) => {
       setWord(false);
     }
   };
+
+
+  useEffect(() => {
+    const res = async()=> {
+      const data = await loadPokemons();
+      console.log(data)
+      setAllPokeFetch(data.results);
+    };
+    res();
+  }, [])
+  
+
   return (
     <div>
       <Head>
@@ -102,7 +117,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                       </Stack>
                     </Stack>
                   ))
-                : allPokemons?.map((poke: any, index: any) => (
+                : allPokeFetch?.map((poke: any, index: any) => (
                     <Stack
                       key={index}
                       border="1px solid black"
@@ -148,14 +163,14 @@ const Home: NextPage = ({ allPokemons }: any) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const res = await loadPokemons();
-  const allPokemons = await res.results;
-  return {
-    props: {
-      allPokemons,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   const res = await loadPokemons();
+//   const allPokemons = await res.results;
+//   return {
+//     props: {
+//       allPokemons,
+//     },
+//   };
+// };
 
 export default Home;
