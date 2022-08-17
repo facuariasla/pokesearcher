@@ -7,12 +7,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 * Single Page App creada con [NextJS](https://nextjs.org/) utilizando React Hooks, estilizada con [ChakraUI](https://chakra-ui.com/).
 * Uso de [Pokemon API](https://pokeapi.co/docs/v2)
 * Detalles: Se utilizaron principalmente 2 URLs de la API
-Para hacer petición de 200 pokemons (límite arbitrario de 200 pokemons):
-
+Para hacer petición de 800 pokemons (límite arbitrario de 800 pokemons):
+De esta lista solo se renderizo en la primer carga 100 pokemons por temas de performance, de cualquier manera al realizar el search, se busca entre los 800.
 ```
-https://pokeapi.co/api/v2/pokemon/?limit=200
+https://pokeapi.co/api/v2/pokemon/?limit=800
 ```
-Para hacer petición de un pokemon especifico, por id:
+Para hacer petición de un pokemon por id para ver en detalle:
 ```
 https://pokeapi.co/api/v2/pokemon/<pokemon_id>/
 ```
