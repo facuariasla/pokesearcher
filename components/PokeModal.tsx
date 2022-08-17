@@ -31,7 +31,7 @@ const PokeModal = ({ pokedata, index }: any) => {
         onClick={handleData}
         cursor="pointer"
         fontWeight={500}
-        transition='all .3s'
+        transition="all .3s"
         _hover={{ color: "green" }}
       >
         Description
@@ -66,8 +66,9 @@ const PokeModal = ({ pokedata, index }: any) => {
                 <Image
                   unoptimized
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                    index + 1
+                    pokedata.url.split("/")[6]
                   }.png`}
+                  // src={poke.url.split('/')[7]}
                   width={100}
                   height={100}
                   alt={pokedata.name}
