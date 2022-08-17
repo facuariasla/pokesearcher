@@ -18,21 +18,20 @@ import { loadPokemons } from "../lib";
 const Home: NextPage = ({ allPokemons }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [arrayFragment, setArrayFragment] = useState(allPokemons);
-  const [word, setWord] = useState(true)
+  const [word, setWord] = useState(true);
 
   const handleSearch = (e: any) => {
-    if(e.target.value.length > 0){
+    if (e.target.value.length > 0) {
       console.log(e.target.value.toLowerCase());
       const array = allPokemons.filter((el: any) =>
         el.name.includes(e.target.value.toLowerCase())
       );
       setArrayFragment(array);
       console.log(array);
-      setWord(true)
+      setWord(true);
     } else {
-      setWord(false)
+      setWord(false);
     }
-
   };
   return (
     <div>
@@ -63,7 +62,8 @@ const Home: NextPage = ({ allPokemons }: any) => {
           {/* Cards container */}
           <Stack>
             <SimpleGrid minChildWidth="140px" spacing="20px">
-              {word ?  arrayFragment?.map((poke: any, index: any) => (
+              {word
+                ? arrayFragment?.map((poke: any, index: any) => (
                     <Stack
                       key={index}
                       border="1px solid black"
@@ -86,8 +86,9 @@ const Home: NextPage = ({ allPokemons }: any) => {
                           <Image
                             unoptimized
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                              index + 1
+                              poke.url.split("/")[6]
                             }.png`}
+                            // src={poke.url.split('/')[7]}
                             width={100}
                             height={100}
                             alt={poke.name}
@@ -101,45 +102,44 @@ const Home: NextPage = ({ allPokemons }: any) => {
                       </Stack>
                     </Stack>
                   ))
-                :  allPokemons?.map((poke: any, index: any) => (
-                  <Stack
-                    key={index}
-                    border="1px solid black"
-                    boxShadow="dark-lg"
-                    rounded="md"
-                    p={2}
-                  >
-                    <Text>{index + 1}</Text>
-                    <Text
-                      textAlign="center"
-                      p={0}
-                      m={0}
-                      fontWeight={500}
-                      fontSize="20px"
+                : allPokemons?.map((poke: any, index: any) => (
+                    <Stack
+                      key={index}
+                      border="1px solid black"
+                      boxShadow="dark-lg"
+                      rounded="md"
+                      p={2}
                     >
-                      {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
-                    </Text>
-                    <Stack align="center">
-                      <Stack w={100}>
-                        <Image
-                          unoptimized
-                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                            index + 1
-                          }.png`}
-                          width={100}
-                          height={100}
-                          alt={poke.name}
-                          objectFit="contain"
-                        />
-                      </Stack>
-                      <Stack></Stack>
-                      <Stack>
-                        <PokeModal pokedata={poke} index={index} />
+                      <Text>{index + 1}</Text>
+                      <Text
+                        textAlign="center"
+                        p={0}
+                        m={0}
+                        fontWeight={500}
+                        fontSize="20px"
+                      >
+                        {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
+                      </Text>
+                      <Stack align="center">
+                        <Stack w={100}>
+                          <Image
+                            unoptimized
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                              poke.url.split("/")[6]
+                            }.png`}
+                            width={100}
+                            height={100}
+                            alt={poke.name}
+                            objectFit="contain"
+                          />
+                        </Stack>
+                        <Stack></Stack>
+                        <Stack>
+                          <PokeModal pokedata={poke} index={index} />
+                        </Stack>
                       </Stack>
                     </Stack>
-                  </Stack>
-                ))}
-              
+                  ))}
             </SimpleGrid>
           </Stack>
         </Stack>
