@@ -4,4 +4,10 @@ const nextConfig = {
   swcMinify: true,
 }
 
+module.exports = {
+  images: {
+      domains: ['raw.githubusercontent.com']
+  }
+}
+
 module.exports = nextConfig

@@ -17,7 +17,7 @@ import { loadPokemons } from "../lib";
 
 const Home: NextPage = ({ allPokemons }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [newArray, setNewArray] = useState(allPokemons);
+  const [arrayFragment, setArrayFragment] = useState(allPokemons);
   const [word, setWord] = useState(true)
 
   const handleSearch = (e: any) => {
@@ -26,7 +26,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
       const array = allPokemons.filter((el: any) =>
         el.name.includes(e.target.value.toLowerCase())
       );
-      setNewArray(array);
+      setArrayFragment(array);
       console.log(array);
       setWord(true)
     } else {
@@ -63,7 +63,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
           {/* Cards container */}
           <Stack>
             <SimpleGrid minChildWidth="140px" spacing="20px">
-              {word ?  newArray?.map((poke: any, index: any) => (
+              {word ?  arrayFragment?.map((poke: any, index: any) => (
                     <Stack
                       key={index}
                       border="1px solid black"
@@ -82,7 +82,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                         {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                       </Text>
                       <Stack align="center">
-                        <Stack>
+                        <Stack w={100}>
                           <Image
                             unoptimized
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
@@ -122,7 +122,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                     <Stack align="center">
                       <Stack>
                         <Image
-                          unoptimized
+                          
                           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                             index + 1
                           }.png`}
