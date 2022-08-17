@@ -10,7 +10,6 @@ import {
   Text,
   Stack,
   Progress,
-  Skeleton,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import SkeletonCard from "./SkeletonCard";
@@ -69,7 +68,6 @@ const PokeModal = ({ pokedata, index }: any) => {
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                     pokedata.url.split("/")[6]
                   }.png`}
-                  // src={poke.url.split('/')[7]}
                   width={100}
                   height={100}
                   alt={pokedata.name}

@@ -11,7 +11,7 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PokeModal from "../components/PokeModal";
 import { loadPokemons } from "../lib";
 
@@ -19,8 +19,6 @@ const Home: NextPage = ({ allPokemons }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [arrayFragment, setArrayFragment] = useState(allPokemons);
   const [word, setWord] = useState(false);
-
-
 
   const handleSearch = (e: any) => {
     if (e.target.value.length > 0) {
@@ -33,8 +31,6 @@ const Home: NextPage = ({ allPokemons }: any) => {
       setWord(false);
     }
   };
-
-  
 
   return (
     <div>

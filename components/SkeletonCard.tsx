@@ -1,7 +1,5 @@
 import {
   Skeleton,
-  SkeletonCircle,
-  SkeletonText,
   Stack,
 } from "@chakra-ui/react";
 

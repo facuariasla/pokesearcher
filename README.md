@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Link de acceso
+* https://pokesearcher-facuariasla.vercel.app/
+
+## Descripción
+* Single Page App creada con NextJS utilizando React Hooks, estilizada con ChakraUI.
+* API: https://pokeapi.co/docs/v2
+* Detalles: Se utilizaron principalmente 2 URLs de la API
+
+```
+https://pokeapi.co/api/v2/pokemon/?limit=200
+```
+
+```
+https://pokeapi.co/api/v2/pokemon/<pokemon_id>/
+```
+
 ## Getting Started
 
 First, run the development server:
