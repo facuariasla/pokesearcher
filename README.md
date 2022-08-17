@@ -4,14 +4,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 * https://pokesearcher-facuariasla.vercel.app/
 
 ## Descripción
-* Single Page App creada con NextJS utilizando React Hooks, estilizada con ChakraUI.
-* API: https://pokeapi.co/docs/v2
+* Single Page App creada con [NextJS](https://nextjs.org/) utilizando React Hooks, estilizada con [ChakraUI](https://chakra-ui.com/).
+* Uso de [Pokemon API](https://pokeapi.co/docs/v2)
 * Detalles: Se utilizaron principalmente 2 URLs de la API
+Para hacer petición de 200 pokemons (límite arbitrario de 200 pokemons):
 
 ```
 https://pokeapi.co/api/v2/pokemon/?limit=200
 ```
-
+Para hacer petición de un pokemon especifico, por id:
 ```
 https://pokeapi.co/api/v2/pokemon/<pokemon_id>/
 ```
