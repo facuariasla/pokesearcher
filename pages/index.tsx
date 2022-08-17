@@ -120,7 +120,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                       {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                     </Text>
                     <Stack align="center">
-                      <Stack>
+                      <Stack w={100}>
                         <Image
                           unoptimized
                           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
