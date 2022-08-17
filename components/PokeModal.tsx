@@ -10,6 +10,7 @@ import {
   Text,
   Stack,
   Progress,
+  Divider,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import SkeletonCard from "./SkeletonCard";
@@ -22,6 +23,7 @@ const PokeModal = ({ pokedata, index }: any) => {
     onOpen();
     const res = await fetch(pokedata.url);
     const data = await res.json();
+    console.log(data)
     setPokemon(data);
   };
 
@@ -63,7 +65,7 @@ const PokeModal = ({ pokedata, index }: any) => {
             </Stack>
 
             <Stack direction="row" justify="space-between" p="1rem 0">
-              <Stack w="50%">
+              <Stack w="50%" align='center'>
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                     pokedata.url.split("/")[6]
@@ -84,6 +86,18 @@ const PokeModal = ({ pokedata, index }: any) => {
                         el.ability.name.slice(1)}
                     </Text>
                   ))}
+                </Stack>
+                <Divider/>
+                <Stack direction='row' >
+                  <Stack direction='column'  align='center' color='pink'>
+                    <Text fontWeight={600}>Heigth</Text>
+                    <Text>{pokemon?.height}</Text>
+                  </Stack>
+                  <Divider/>
+                  <Stack direction='column'  align='center' color='tomato'>
+                    <Text fontWeight={600}>Weight</Text>
+                    <Text>{pokemon?.weight}</Text>
+                  </Stack>
                 </Stack>
               </Stack>
               <Stack w="50%">
