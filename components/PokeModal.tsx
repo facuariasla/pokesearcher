@@ -10,8 +10,10 @@ import {
   Text,
   Stack,
   Progress,
+  Skeleton,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import SkeletonCard from "./SkeletonCard";
 
 const PokeModal = ({ pokedata, index }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,8 +49,9 @@ const PokeModal = ({ pokedata, index }: any) => {
           <ModalBody>
             <Stack direction="row" spacing={2} align="center" justify="center">
               <Text fontWeight={500} fontSize="18px">
-                Type:{" "}
+                Type:
               </Text>
+
               {pokemon?.types.map((el: any, index: any) => (
                 <Text
                   key={index}
@@ -64,7 +67,6 @@ const PokeModal = ({ pokedata, index }: any) => {
             <Stack direction="row" justify="space-between" p="1rem 0">
               <Stack w="50%">
                 <Image
-                  unoptimized
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                     pokedata.url.split("/")[6]
                   }.png`}
@@ -73,6 +75,7 @@ const PokeModal = ({ pokedata, index }: any) => {
                   height={100}
                   alt={pokedata.name}
                   objectFit="contain"
+                  unoptimized
                 />
                 <Stack direction="column">
                   <Text as="u" textAlign="center" fontWeight={600}>
@@ -87,24 +90,28 @@ const PokeModal = ({ pokedata, index }: any) => {
                 </Stack>
               </Stack>
               <Stack w="50%">
-                {pokemon?.stats.map((el: any, index: any) => (
-                  <Stack key={index}>
-                    <Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Text>
-                          {el.stat.name.charAt(0).toUpperCase() +
-                            el.stat.name.slice(1)}
-                        </Text>
-                        <Text fontWeight={600}>({el.base_stat})</Text>
+                {pokemon ? (
+                  pokemon.stats.map((el: any, index: any) => (
+                    <Stack key={index}>
+                      <Stack>
+                        <Stack direction="row" spacing={1}>
+                          <Text>
+                            {el.stat.name.charAt(0).toUpperCase() +
+                              el.stat.name.slice(1)}
+                          </Text>
+                          <Text fontWeight={600}>({el.base_stat})</Text>
+                        </Stack>
+                        <Progress
+                          colorScheme="green"
+                          size="sm"
+                          value={el.base_stat}
+                        />
                       </Stack>
-                      <Progress
-                        colorScheme="green"
-                        size="sm"
-                        value={el.base_stat}
-                      />
                     </Stack>
-                  </Stack>
-                ))}
+                  ))
+                ) : (
+                  <SkeletonCard />
+                )}
               </Stack>
             </Stack>
           </ModalBody>
