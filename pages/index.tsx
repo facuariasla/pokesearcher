@@ -17,7 +17,8 @@ import { loadPokemons } from "../lib";
 
 const Home: NextPage = ({ allPokemons }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [arrayFragment, setArrayFragment] = useState(allPokemons);
+  const [arrayHundred, setArrayHundred] = useState(allPokemons.slice(0,100))
+  const [arrayFragment, setArrayFragment] = useState<any>();
   const [word, setWord] = useState(false);
 
   const handleSearch = (e: any) => {
@@ -70,7 +71,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                       rounded="md"
                       p={2}
                     >
-                      <Text>{index + 1}</Text>
+                      <Text>{poke.url.split("/")[6]}</Text>
                       <Text
                         textAlign="center"
                         p={0}
@@ -101,7 +102,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                       </Stack>
                     </Stack>
                   ))
-                : allPokemons?.map((poke: any, index: any) => (
+                : arrayHundred?.map((poke: any, index: any) => (
                     <Stack
                       key={index}
                       border="1px solid black"
