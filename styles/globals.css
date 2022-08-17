@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -13,70 +13,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
-
-
-.grass {
-  color: #53c362;
-}
-.poison {
-  color: #dd00a2;
-}
-.fire {
-  color: #ff6c32;
-}
-.flying {
-  color: rgb(162, 71, 253);
-}
-.water {
-  color: #009bc6;
-}
-.bug {
-  color: #a8b820;
-}
-.normal {
-  color: #a8a878;
-}
-.electric {
-  color: #dddd00;
-}
-.ground {
-  color: #b67e4d;
-}
-.fairy {
-  color: #ff6ac1;
-}
-.fighting {
-  color: #870000;
-}
-.psychic {
-  color: #f85888;
-}
-.ice {
-  color: #00d5dd;
-}
-.rock {
-  color: #6e6e6e;
-}
-.dark {
-  color: #3f3f3f;
-}
-.ghost {
-  color: #705898;
-}
-.steel {
-  color: #7993b1;
-}
-.dragon {
-  color: rgb(6, 0, 189);
-}
+} */

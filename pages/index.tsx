@@ -6,13 +6,17 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import PokeModal from "../components/PokeModal";
 import { loadPokemons } from "../lib";
 
 const Home: NextPage = ({ allPokemons }: any) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   const handleSearch = (e: any) => {
     console.log(e.target.value.toLowerCase());
   };
@@ -25,15 +29,20 @@ const Home: NextPage = ({ allPokemons }: any) => {
         <link rel="icon" href="/star-poke.ico" />
       </Head>
 
-      <Container maxW="1280px" backgroundColor="tomato">
+      <Container maxW="1280px">
         <Stack spacing={4}>
-          <Heading textAlign="center">Search a Pokemon!</Heading>
+          <Stack alignSelf='flex-end' p={4}>
+            <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? "Dark 🌑" : "Light ☀"} Mode
+            </Button>
+          </Stack>
+          <Heading textAlign="center">PokeSearcher!</Heading>
 
           <Stack width="100%" p="0 2rem">
             <Input
               w="100%"
               type="text"
-              placeholder="Busca un pokemon"
+              placeholder="Search"
               onChange={(e) => handleSearch(e)}
             />
           </Stack>
@@ -42,9 +51,21 @@ const Home: NextPage = ({ allPokemons }: any) => {
           <Stack>
             <SimpleGrid minChildWidth="140px" spacing="20px">
               {allPokemons?.map((poke: any, index: any) => (
-                <Stack key={index} bg="blue" p={1}>
+                <Stack
+                  key={index}
+                  border="1px solid black"
+                  boxShadow="dark-lg"
+                  rounded="md"
+                  p={2}
+                >
                   <Text>{index + 1}</Text>
-                  <Text textAlign="center" p={0} m={0}>
+                  <Text
+                    textAlign="center"
+                    p={0}
+                    m={0}
+                    fontWeight={500}
+                    fontSize="20px"
+                  >
                     {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                   </Text>
                   <Stack align="center">
@@ -62,7 +83,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                     </Stack>
                     <Stack></Stack>
                     <Stack>
-                      <Text>Description</Text>
+                      <PokeModal pokedata={poke} index={index} />
                     </Stack>
                   </Stack>
                 </Stack>
