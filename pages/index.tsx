@@ -24,12 +24,10 @@ const Home: NextPage = ({ allPokemons }: any) => {
 
   const handleSearch = (e: any) => {
     if (e.target.value.length > 0) {
-      console.log(e.target.value.toLowerCase());
       const array = allPokemons?.filter((el: any) =>
         el.name.includes(e.target.value.toLowerCase())
       );
       setArrayFragment(array);
-      console.log(array);
       setWord(true);
     } else {
       setWord(false);

@@ -23,7 +23,6 @@ const PokeModal = ({ pokedata, index }: any) => {
     onOpen();
     const res = await fetch(pokedata.url);
     const data = await res.json();
-    console.log(data);
     setPokemon(data);
   };
 
