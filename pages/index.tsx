@@ -11,16 +11,29 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 import PokeModal from "../components/PokeModal";
 import { loadPokemons } from "../lib";
 
 const Home: NextPage = ({ allPokemons }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const [newArray, setNewArray] = useState(allPokemons);
+  const [word, setWord] = useState(true)
 
   const handleSearch = (e: any) => {
-    console.log(e.target.value.toLowerCase());
-  };
+    if(e.target.value.length > 0){
+      console.log(e.target.value.toLowerCase());
+      const array = allPokemons.filter((el: any) =>
+        el.name.includes(e.target.value.toLowerCase())
+      );
+      setNewArray(array);
+      console.log(array);
+      setWord(true)
+    } else {
+      setWord(false)
+    }
 
+  };
   return (
     <div>
       <Head>
@@ -31,7 +44,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
 
       <Container maxW="1280px">
         <Stack spacing={4}>
-          <Stack alignSelf='flex-end' p={4}>
+          <Stack alignSelf="flex-end" p={4}>
             <Button onClick={toggleColorMode}>
               {colorMode === "light" ? "Dark 🌑" : "Light ☀"} Mode
             </Button>
@@ -50,44 +63,83 @@ const Home: NextPage = ({ allPokemons }: any) => {
           {/* Cards container */}
           <Stack>
             <SimpleGrid minChildWidth="140px" spacing="20px">
-              {allPokemons?.map((poke: any, index: any) => (
-                <Stack
-                  key={index}
-                  border="1px solid black"
-                  boxShadow="dark-lg"
-                  rounded="md"
-                  p={2}
-                >
-                  <Text>{index + 1}</Text>
-                  <Text
-                    textAlign="center"
-                    p={0}
-                    m={0}
-                    fontWeight={500}
-                    fontSize="20px"
-                  >
-                    {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
-                  </Text>
-                  <Stack align="center">
-                    <Stack>
-                      <Image
-                        unoptimized
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                          index + 1
-                        }.png`}
-                        width={100}
-                        height={100}
-                        alt={poke.name}
-                        objectFit="contain"
-                      />
+              {word ?  newArray?.map((poke: any, index: any) => (
+                    <Stack
+                      key={index}
+                      border="1px solid black"
+                      boxShadow="dark-lg"
+                      rounded="md"
+                      p={2}
+                    >
+                      <Text>{index + 1}</Text>
+                      <Text
+                        textAlign="center"
+                        p={0}
+                        m={0}
+                        fontWeight={500}
+                        fontSize="20px"
+                      >
+                        {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
+                      </Text>
+                      <Stack align="center">
+                        <Stack>
+                          <Image
+                            unoptimized
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                              index + 1
+                            }.png`}
+                            width={100}
+                            height={100}
+                            alt={poke.name}
+                            objectFit="contain"
+                          />
+                        </Stack>
+                        <Stack></Stack>
+                        <Stack>
+                          <PokeModal pokedata={poke} index={index} />
+                        </Stack>
+                      </Stack>
                     </Stack>
-                    <Stack></Stack>
-                    <Stack>
-                      <PokeModal pokedata={poke} index={index} />
+                  ))
+                :  allPokemons?.map((poke: any, index: any) => (
+                  <Stack
+                    key={index}
+                    border="1px solid black"
+                    boxShadow="dark-lg"
+                    rounded="md"
+                    p={2}
+                  >
+                    <Text>{index + 1}</Text>
+                    <Text
+                      textAlign="center"
+                      p={0}
+                      m={0}
+                      fontWeight={500}
+                      fontSize="20px"
+                    >
+                      {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
+                    </Text>
+                    <Stack align="center">
+                      <Stack>
+                        <Image
+                          unoptimized
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                            index + 1
+                          }.png`}
+                          width={100}
+                          height={100}
+                          alt={poke.name}
+                          objectFit="contain"
+                        />
+                      </Stack>
+                      <Stack></Stack>
+                      <Stack>
+                        <PokeModal pokedata={poke} index={index} />
+                      </Stack>
                     </Stack>
                   </Stack>
-                </Stack>
-              ))}
+                ))}
+              
             </SimpleGrid>
           </Stack>
         </Stack>

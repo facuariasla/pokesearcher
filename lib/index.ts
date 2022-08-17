@@ -1,7 +1,7 @@
 export async function loadPokemons() {
   // Trae 600 pokemons
   // Solo trae la URL de cada uno, y su name
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=800");
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=600");
   const data = await res.json();
   return data;
 }
