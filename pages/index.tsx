@@ -122,7 +122,7 @@ const Home: NextPage = ({ allPokemons }: any) => {
                     <Stack align="center">
                       <Stack>
                         <Image
-                          
+                          unoptimized
                           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                             index + 1
                           }.png`}
