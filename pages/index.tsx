@@ -126,7 +126,7 @@ const Home: NextPage = ({ allPokeWImg }: any) => {
                       rounded="md"
                       p={2}
                     >
-                      <Text>{index + 1}</Text>
+                      <Text>{poke.url.split("/")[6]}</Text>
                       <Text
                         textAlign="center"
                         p={0}
