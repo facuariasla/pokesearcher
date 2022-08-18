@@ -29,7 +29,6 @@ const Home: NextPage = ({ allPokeWImg }: any) => {
         el.name.includes(e.target.value.toLowerCase())
       );
       setArrayFragment(array);
-      console.log(array)
       setWord(true);
     } else {
       setWord(false);
