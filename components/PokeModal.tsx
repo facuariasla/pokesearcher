@@ -67,9 +67,7 @@ const PokeModal = ({ pokedata, index }: any) => {
             <Stack direction="row" justify="space-between" p="1rem 0">
               <Stack w="50%" align='center'>
                 <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                    pokedata.url.split("/")[6]
-                  }.png`}
+                  src={pokedata.imageurl}
                   width={100}
                   height={100}
                   alt={pokedata.name}

@@ -9,6 +9,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import loadConfig from "next/dist/server/config";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -34,22 +35,22 @@ const Home: NextPage = ({ allPokeWImg }: any) => {
   };
 
   useEffect(() => {
-    const query = async() => {
+    const query = async () => {
       const res = await loadPokemons(800);
       const allPokemons = await res.results;
       const allPokeWImg = await allPokemons.map((el: any) => {
         return {
           ...el,
-          imageurl:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+          imageurl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
             el.url.split("/")[6]
-          }.png`
-        }
+          }.png`,
+        };
       });
-      setArrayFragment(allPokeWImg)
-    }
-    query()
-  }, [])
-  
+      setArrayFragment(allPokeWImg);
+    };
+    query();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -100,11 +101,10 @@ const Home: NextPage = ({ allPokeWImg }: any) => {
                         {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                       </Text>
                       <Stack align="center">
-                        <Stack w={100}>
+                        <Stack w={100} h={100}>
                           <Image
                             unoptimized
                             src={poke.imageurl}
-                            // src={poke.url.split('/')[7]}
                             width={100}
                             height={100}
                             alt={poke.name}
@@ -137,12 +137,10 @@ const Home: NextPage = ({ allPokeWImg }: any) => {
                         {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                       </Text>
                       <Stack align="center">
-                        <Stack w={100}>
+                        <Stack w={100} h={100}>
                           <Image
                             unoptimized
-                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                              poke.url.split("/")[6]
-                            }.png`}
+                            src={poke.imageurl}
                             width={100}
                             height={100}
                             alt={poke.name}
@@ -170,10 +168,10 @@ export const getStaticProps = async () => {
   const allPokeWImg = await allPokemons.map((el: any) => {
     return {
       ...el,
-      imageurl:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+      imageurl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
         el.url.split("/")[6]
-      }.png`
-    }
+      }.png`,
+    };
   });
   return {
     props: {
