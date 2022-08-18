@@ -19,15 +19,17 @@ import { loadPokemons } from "../lib";
 const Home: NextPage = ({ allPokeWImg }: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [arrayHundred, setArrayHundred] = useState(allPokeWImg);
+  const [arrayAll, setArrayAll] = useState<any>();
   const [arrayFragment, setArrayFragment] = useState<any>();
   const [word, setWord] = useState(false);
 
   const handleSearch = (e: any) => {
     if (e.target.value.length > 0) {
-      const array = arrayFragment?.filter((el: any) =>
+      const array = arrayAll?.filter((el: any) =>
         el.name.includes(e.target.value.toLowerCase())
       );
       setArrayFragment(array);
+      console.log(array)
       setWord(true);
     } else {
       setWord(false);
@@ -46,7 +48,7 @@ const Home: NextPage = ({ allPokeWImg }: any) => {
           }.png`,
         };
       });
-      setArrayFragment(allPokeWImg);
+      setArrayAll(allPokeWImg);
     };
     query();
   }, []);
